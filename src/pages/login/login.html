@@ -16,13 +16,14 @@
 
   <ion-item>
       <ion-label floating>Contraseña</ion-label>
-   <ion-input type="text" [(ngModel)]="user.password"></ion-input>
+   <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+
   </ion-item>
+  <button ion-button (click)="login()">Ingresar</button>
 
 
-<button ion-button (click)="login()">Ingresar</button>
-
-  <ion-item padding>
-    <button ion-button block>Pulsa aquí SI eres médico</button>
-  </ion-item>
+  <!-- //Futura implentación -->
+  <!-- <ion-item padding>
+    <button ion-button block color="secondary" (click)="MedicoLogin()" >Pulsa aquí SI eres médico</button>
+  </ion-item> -->
 </ion-content>
