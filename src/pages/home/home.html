@@ -1,17 +1,57 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Principal</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content class="page-home" padding>
+  <ion-card>
+    <ion-card-content>
+      Bienvenido {{this.getName()}}
+    </ion-card-content>
+  </ion-card>
+  <div padding>
+    <ion-segment [(ngModel)]="Menu">
+      <ion-segment-button value="Inicio">
+        Inicio
+      </ion-segment-button>
+      <ion-segment-button value="M1">
+        Mapa de Hospitales
+      </ion-segment-button>
+      <ion-segment-button value="M2">
+        Mapa de Farmacias
+      </ion-segment-button>
+      <ion-segment-button value="Ayuda">
+        Ayuda
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="Menu">
+    <ion-label *ngSwitchCase="'Inicio'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-label>Que tal estuvo tu visita a.. ?</ion-label>
+            <ion-item>
+              <ion-range [(ngModel)]="puntuacion">
+                <ion-icon range-left small name="happy"></ion-icon>
+                <ion-icon range-right name="happy"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-content class="card-background-page">
+              <ion-card>
+                <img src="../../assets/imgs/mail.png">
+                <div class="card-title">Dr. </div>
+                <div class="card-subtitle">te ha dejado nuevas recomendaciones</div>
+              </ion-card>
+            </ion-content>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-label>
+    <ion-label *ngSwitchCase="'M1'">Mapa de Hospitales</ion-label>
+    <ion-label *ngSwitchCase="'M2'">Mapa de Farmacias</ion-label>
+    <ion-label *ngSwitchCase="'Ayuda'">Ayuda</ion-label>
+  </div>
 </ion-content>
