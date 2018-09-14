@@ -1,11 +1,28 @@
 <ion-header>
 <ion-navbar color="primary">
-<ion-title> Inicio </ion-title>
+<ion-title> Inicia sesión </ion-title>
 </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
+
+  <ion-img width="300" height="300" src="../../assets/imgs/proof.jpg"></ion-img>
+
 <ion-item>
- <ion-label> Iniciar Sesión</ion-label>
+ <ion-label floating>Correo</ion-label>
+ <ion-input type="text" [(ngModel)]="user.email"></ion-input>
 </ion-item>
+
+  <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+   <ion-input type="text" [(ngModel)]="user.password"></ion-input>
+  </ion-item>
+
+
+<button ion-button (click)="login()">Ingresar</button>
+
+  <ion-item padding>
+    <button ion-button block>Pulsa aquí SI eres médico</button>
+  </ion-item>
 </ion-content>
