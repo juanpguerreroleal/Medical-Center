@@ -22,6 +22,7 @@ export class LoginPage {
       const result = this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
       if (result) {
         this.navCtrl.push(TabsPage);
+        window.localStorage.setItem("email", this.user.email);
       }
     }
     catch (e) {

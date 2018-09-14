@@ -7,13 +7,11 @@ import { AngularFireAuth } from '@angular/fire/auth'
   templateUrl: 'home.html',
 })
 export class HomePage {
-
   constructor(private afAuth: AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {
+    
   }
   getName(){
-  	//Funcion para obtener nombre del user
-  	//Simulacion de un usuario
-  	return "Hibrido";
+  	return window.localStorage.getItem("email");
   }
 
   ionViewWillLoad(){
