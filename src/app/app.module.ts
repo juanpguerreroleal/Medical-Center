@@ -8,8 +8,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { UserPage } from '../pages/user/user';
+import { ContactPage, DesarrolladoresPage } from '../pages/contact/contact';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,8 +21,9 @@ import { LoginPage } from '../pages/login/login';
     HomePage,
     LoginPage,
     TabsPage,
-    AboutPage,
-    ContactPage
+    UserPage,
+    ContactPage,
+    DesarrolladoresPage
   ],
   imports: [
     BrowserModule,
@@ -36,8 +37,9 @@ import { LoginPage } from '../pages/login/login';
     LoginPage,
     HomePage,
     TabsPage,
-    AboutPage,
-    ContactPage
+    UserPage,
+    ContactPage,
+    DesarrolladoresPage
   ],
   providers: [
     StatusBar,
