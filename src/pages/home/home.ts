@@ -7,8 +7,8 @@ import { AngularFireAuth } from '@angular/fire/auth'
   templateUrl: 'home.html',
 })
 export class HomePage {
+  Menu: string = "Inicio";
   constructor(private afAuth: AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {
-    
   }
   getName(){
   	return window.localStorage.getItem("email");
