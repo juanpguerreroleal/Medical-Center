@@ -8,12 +8,10 @@ import { AngularFireAuth } from '@angular/fire/auth'
 })
 export class HomePage {
   Menu: string = "Inicio";
-  constructor(private afAuth: AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(private afAuth: AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {}
   getName(){
   	return window.localStorage.getItem("email");
   }
-
   ionViewWillLoad(){
     this.afAuth.authState.subscribe(data => {
       if(data && data.email && data.uid) {

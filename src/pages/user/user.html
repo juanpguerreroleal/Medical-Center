@@ -10,7 +10,7 @@
         General
       </ion-segment-button>
       <ion-segment-button value="Calendario">
-        Calentario
+        Calendario
       </ion-segment-button>
       <ion-segment-button value="Medicamentos">
         Medicamentos
@@ -22,15 +22,11 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            
-          </ion-col>
-          <ion-col col-6>
-
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-label>
-    <ion-label *ngSwitchCase="'Calendario'">Calendario</ion-label>
+    <ion-label *ngSwitchCase="'Calendario'"> <ion-calendar #calendar lang="es"></ion-calendar></ion-label>
     <ion-label *ngSwitchCase="'Medicamentos'">Medicamentos</ion-label>
-  </div>
+    </div>
 </ion-content>
