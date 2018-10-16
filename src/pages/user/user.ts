@@ -6,7 +6,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'user.html'
 })
 export class UserPage {
-
+  Menu: string = "General";
   constructor(public navCtrl: NavController) {
 
   }

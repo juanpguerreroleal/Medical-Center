@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar color="doctores">
+      <ion-title> Inicia sesión </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+    <ion-img width="300" height="300" src="../../assets/imgs/medical-59_icon-icons.com_73933.png"></ion-img>
+    <ion-item>
+      <ion-label floating>Correo</ion-label>
+      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <button ion-button (click)="login()"color="doctores">Ingresar</button>
+    </ion-content>

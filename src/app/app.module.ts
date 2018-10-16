@@ -15,6 +15,9 @@ import { ContactPage, DesarrolladoresPage } from '../pages/contact/contact';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
+import { RegistroPage } from '../pages/registro/registro';
+import { DoctorsPage } from '../pages/doctors/doctors';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +27,9 @@ import { LoginPage } from '../pages/login/login';
     UserPage,
     ContactPage,
     Mapa,
-    DesarrolladoresPage
+    DesarrolladoresPage,
+    RegistroPage,
+    DoctorsPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,9 @@ import { LoginPage } from '../pages/login/login';
     UserPage,
     ContactPage,
     Mapa,
-    DesarrolladoresPage
+    DesarrolladoresPage,
+    RegistroPage,
+    DoctorsPage
   ],
   providers: [
     StatusBar,

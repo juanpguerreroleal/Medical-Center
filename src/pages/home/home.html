@@ -10,7 +10,7 @@
     </ion-card-content>
   </ion-card>
   <div padding>
-    <ion-segment [(ngModel)]="Menu">
+    <ion-segment [(ngModel)]="Menu" color="beauty">
       <ion-segment-button value="Inicio">
         Inicio
       </ion-segment-button>
@@ -33,6 +33,14 @@
                 <ion-icon range-right name="happy"></ion-icon>
               </ion-range>
             </ion-item>
+            <ion-row col-12>
+              <ion-row col-12>
+                <ion-label>Siguientes citas:</ion-label>
+              </ion-row>
+              <ion-row col-12>
+                <ion-calendar col-12 #calendar lang="es"></ion-calendar>
+              </ion-row>
+            </ion-row>
           </ion-col>
           <ion-col col-6>
               <ion-card>
@@ -40,18 +48,8 @@
               </ion-card>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <ion-label>Calendario (Proximamente)</ion-label>
-          </ion-col>
-        </ion-row>
+
       </ion-grid>
-    </ion-label>
-    <ion-label *ngSwitchCase="'M1'">
-      Mapa de farmacias
-    </ion-label>
-    <ion-label *ngSwitchCase="'M2'">
-      Mapa de Farmacias
     </ion-label>
     <ion-label *ngSwitchCase="'Ayuda'">
       Ayuda
