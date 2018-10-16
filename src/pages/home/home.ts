@@ -20,6 +20,7 @@ export class HomePage {
           duration: 3000
 
       }).present();
+      window.localStorage.setItem("email", data.email);
   }
   else{
     this.toast.create({
