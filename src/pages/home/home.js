@@ -19,7 +19,7 @@ var HomePage = /** @class */ (function () {
         this.Menu = "Inicio";
     }
     HomePage.prototype.getName = function () {
-        return window.localStorage.getItem("email");
+        return data.email;
     };
     HomePage.prototype.ionViewWillLoad = function () {
         var _this = this;

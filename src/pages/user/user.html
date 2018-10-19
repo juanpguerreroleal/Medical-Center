@@ -27,6 +27,9 @@
       </ion-grid>
     </ion-label>
     <ion-label *ngSwitchCase="'Calendario'"><ion-calendar #calendar lang="es"></ion-calendar></ion-label>
-    <ion-label *ngSwitchCase="'Medicamentos'">Medicamentos</ion-label>
+    <ion-label *ngSwitchCase="'Medicamentos'">
+      Programar toma de medicamentos 
+      <ion-input type="number" min="1" max="100000"[(ngModel)]="num" placeholder="escribe el tiempo en minutos de tu proxima toma"></ion-input>
+    <button ion-button block (click)="delayednotification()" color="danger">Programar recordatorio</button></ion-label>
     </div>
 </ion-content>

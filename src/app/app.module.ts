@@ -17,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { RegistroPage } from '../pages/registro/registro';
 import { DoctorsPage } from '../pages/doctors/doctors';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { DoctorsPage } from '../pages/doctors/doctors';
     StatusBar,
     SplashScreen,
     Geolocation,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
