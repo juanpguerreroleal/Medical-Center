@@ -21,7 +21,6 @@ export class LoginPage {
     private afAuth: AngularFireAuth, public navCtrl: NavController,
     public navParams: NavParams, private alertCtrl: AlertController) {
   }
-
   async login(user: User) {
     try {
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
@@ -39,7 +38,6 @@ export class LoginPage {
 
   }
 
-
   registro(){
     this.navCtrl.push(RegistroPage)
   }
@@ -55,8 +53,6 @@ export class LoginPage {
 
     });
   }
-
-
   logind() {
   this.navCtrl.push(DoctorsPage);
   }
