@@ -1,7 +1,7 @@
 import { DoctorsPage } from './../doctors/doctors';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
@@ -18,7 +18,8 @@ export class LoginPage {
  user = {} as User;
 
   constructor(
-    private afAuth: AngularFireAuth, public navParams: NavParams, private alertCtrl: AlertController) {
+    private afAuth: AngularFireAuth, public navCtrl: NavController,
+    public navParams: NavParams, private alertCtrl: AlertController) {
   }
   async login(user: User) {
     try {
@@ -38,7 +39,7 @@ export class LoginPage {
   }
   ionViewPageLoad(){
     let self = firebase.auth().onAuthStateChanged(function(user) {
-      if (self) {
+      if (user) {
        this.self.navCtrl.setRoot('TabsPage');
       } else {
         this.navCtrl.setRoot('LoginPage');       }
