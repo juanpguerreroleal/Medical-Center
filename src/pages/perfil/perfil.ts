@@ -1,12 +1,9 @@
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PerfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Perfil } from '../../models/perfil';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -15,11 +12,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfilPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  perfil = {} as Perfil;
+  constructor(private afAuth: AngularFireAuth,
+   private AfDatabase: AngularFireDatabase,
+    public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
-  }
+ crearperfil(){
+   this.afAuth.authState.take(1).subscribe(auth =>{
+     this.AfDatabase.list(`perfil/${auth.uid}`).push(this.perfil)
+     .then(() => this.navCtrl.push(TabsPage));
+   })
+ }
 
 }

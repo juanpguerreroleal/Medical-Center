@@ -1,3 +1,5 @@
+import { PerfilPage } from './../pages/perfil/perfil';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,13 +32,15 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     Mapa,
     DesarrolladoresPage,
     RegistroPage,
-    DoctorsPage
+    DoctorsPage,
+    PerfilPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     CalendarModule,
   ],
   bootstrap: [IonicApp],
@@ -50,7 +54,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     Mapa,
     DesarrolladoresPage,
     RegistroPage,
-    DoctorsPage
+    DoctorsPage,
+    PerfilPage
   ],
   providers: [
     StatusBar,
