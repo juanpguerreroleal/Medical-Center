@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth'
+import { Perfil } from '../../models/perfil';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import {Observable} from 'rxjs';
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -8,7 +11,9 @@ import { AngularFireAuth } from '@angular/fire/auth'
 })
 export class HomePage {
   Menu: string = "Inicio";
-  constructor(private afAuth: AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {}
+
+  DatosdePerfil: AngularFireObject<Perfil>
+  constructor(private afAuth: AngularFireAuth,private AfDatabase: AngularFireDatabase, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {}
   getName(){
   	return window.localStorage.getItem("email");
   }
@@ -20,6 +25,7 @@ export class HomePage {
           duration: 3000
 
       }).present();
+      this.DatosdePerfil = this.AfDatabase.object(`perfil/${data.uid}`)
       window.localStorage.setItem("email", data.email);
   }
   else{

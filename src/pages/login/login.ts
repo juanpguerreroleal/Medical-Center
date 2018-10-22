@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { DoctorsPage } from './../doctors/doctors';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
@@ -18,7 +19,7 @@ export class LoginPage {
  user = {} as User;
 
   constructor(
-    private afAuth: AngularFireAuth, public navCtrl: NavController,
+    private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController,
     public navParams: NavParams, private alertCtrl: AlertController) {
   }
   async login(user: User) {
