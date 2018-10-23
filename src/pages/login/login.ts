@@ -24,7 +24,7 @@ export class LoginPage {
   }
   async login(user: User) {
     try {
-      this.usuario;
+
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
       if (result) {
         this.navCtrl.push(PerfilPage);
@@ -52,19 +52,6 @@ export class LoginPage {
     this.navCtrl.push(RegistroPage)
   }
 
-
-
-  usuario(){
-    this.afAuth.auth.onAuthStateChanged(function(user){
-      if(user){
-        this.navCtrl.setRoot(TabsPage);
-      }
-      else{
-        this.navCtrl.setRoot(LoginPage);
-      }
-
-    });
-  }
   logind() {
   this.navCtrl.push(DoctorsPage);
   }
