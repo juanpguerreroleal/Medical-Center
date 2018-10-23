@@ -1,11 +1,12 @@
 import { DoctorsPage } from './../doctors/doctors';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase';
 import { RegistroPage } from '../registro/registro';
+import { PerfilPage } from '../perfil/perfil';
+import * as firebase from 'firebase/app';
 
 
 @IonicPage()
@@ -19,13 +20,14 @@ export class LoginPage {
 
   constructor(
     private afAuth: AngularFireAuth, public navCtrl: NavController,
-    public navParams: NavParams, private alertCtrl: AlertController) {
+    public navParams: NavParams) {
   }
   async login(user: User) {
     try {
+      this.usuario;
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
       if (result) {
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.push(PerfilPage);
         window.localStorage.setItem("email", this.user.email);
       }
       else{
@@ -38,11 +40,11 @@ export class LoginPage {
 
   }
   ionViewPageLoad(){
-    let self = firebase.auth().onAuthStateChanged(function(user) {
+     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-       this.self.navCtrl.setRoot('TabsPage');
+       this.self.navCtrl.setRoot(TabsPage);
       } else {
-        this.navCtrl.setRoot('LoginPage');       }
+        this.navCtrl.setRoot(LoginPage);       }
     });
   }
 
@@ -53,8 +55,8 @@ export class LoginPage {
 
 
   usuario(){
-    this.afAuth.auth.onAuthStateChanged(function(usuario){
-      if(usuario){
+    this.afAuth.auth.onAuthStateChanged(function(user){
+      if(user){
         this.navCtrl.setRoot(TabsPage);
       }
       else{

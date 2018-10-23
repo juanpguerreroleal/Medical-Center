@@ -4,5 +4,6 @@ export interface Perfil {
   apellidom: string;
   edad: symbol;
   correo: string;
+  alergia: string;
   clase:boolean;
 }

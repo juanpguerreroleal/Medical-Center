@@ -21,7 +21,7 @@ export class PerfilPage {
  crearperfil(){
    this.afAuth.authState.take(1).subscribe(auth =>{
      this.AfDatabase.list(`perfil/${auth.uid}`).push(this.perfil)
-     .then(() => this.navCtrl.setRoot('TabsPage'));
+     .then(() => this.navCtrl.setRoot(TabsPage));
    })
  }
 
