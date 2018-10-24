@@ -8,5 +8,9 @@ Incluido:
 
 ## ***Elementos por agregar***:
 ## Alert de:
-- [x] Perfil creado_
-- [x] _Datos incorrectos_
+- [√] _Perfil creado_
+- [√] _Datos incorrectos_
+
+## Formulario Médico:
+- [?] _Agregar cita médica_
+- [?] _Desplegar cita en pantalla usuario_
