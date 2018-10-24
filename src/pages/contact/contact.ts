@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { PerfilPage } from '../perfil/perfil';
 
 @Component({
   selector: 'page-contact',
@@ -9,13 +10,16 @@ export class ContactPage {
   constructor(public navCtrl: NavController) {
 
   }
+
+
+
   show(opcion){
   	switch (opcion) {
   		case 1:
   			this.navCtrl.push(DesarrolladoresPage);
   			break;
-  		default:
-  			// Nothing
+  		case 2:
+  			this.navCtrl.push(PerfilPage);
   			break;
   	}
   }

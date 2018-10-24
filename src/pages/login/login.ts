@@ -1,3 +1,4 @@
+import { AlertController } from 'ionic-angular';
 import { DoctorsPage } from './../doctors/doctors';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
@@ -5,7 +6,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { RegistroPage } from '../registro/registro';
-import { PerfilPage } from '../perfil/perfil';
 import * as firebase from 'firebase/app';
 
 
@@ -19,7 +19,9 @@ export class LoginPage {
  user = {} as User;
 
   constructor(
-    private afAuth: AngularFireAuth, public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    private afAuth: AngularFireAuth,
+    public navCtrl: NavController,
     public navParams: NavParams) {
   }
   async login(user: User) {
@@ -27,15 +29,26 @@ export class LoginPage {
 
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
       if (result) {
-        this.navCtrl.push(PerfilPage);
+        this.navCtrl.push(TabsPage);
         window.localStorage.setItem("email", this.user.email);
       }
       else{
-        this.navCtrl.setRoot(LoginPage);
+        const alert = this.alertCtrl.create({
+          title: 'Fallo al iniciar sesión!',
+          subTitle: 'Introduciste mal tu correo o contraseña',
+          buttons: ['Entendido']
+        });
+        alert.present();
       }
     }
     catch (e) {
       console.error(e);
+      const alert = this.alertCtrl.create({
+        title: 'Fallo al iniciar sesión!',
+        subTitle: 'Introduciste mal tu correo o contraseña',
+        buttons: ['Entendido']
+      });
+      alert.present();
     }
 
   }
