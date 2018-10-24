@@ -1,14 +1,18 @@
 <ion-header>
-<ion-navbar color="beauty">
-    <ion-title>
-    Hospitales cerca
-    </ion-title> 
-
-</ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="Busca un hospital o farmacia"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-
+<ion-list [hidden]="autocompleteItems.length == 0">
+  <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+    {{ item.description }}
+  </ion-item>
+</ion-list>
 <div #map id="map"></div> 
-
 </ion-content>
+
+<ion-footer>
+  <button class="geolocation-btn" ion-button full (click)="tryGeolocation()">Buscar mi localizacion</button>
+</ion-footer>
+
