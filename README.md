@@ -7,6 +7,6 @@ Incluido:
 3. Uso de Mapas con uso de Places API
 
 ## ***Elementos por agregar***:
-_Alert de _:
+## Alert de:
 - [x] Perfil creado_
 - [x] _Datos incorrectos_
