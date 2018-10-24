@@ -6,8 +6,8 @@
 <ion-content class="page-user" padding>
   <div padding>
     <ion-segment [(ngModel)]="Menu" color="beauty">
-      <ion-segment-button value="General">
-        General
+      <ion-segment-button value="Perfil">
+        Perfil
       </ion-segment-button>
       <ion-segment-button value="Calendario">
         Calendario
@@ -26,10 +26,19 @@
         </ion-row>
       </ion-grid>
     </ion-label>
-    <ion-label *ngSwitchCase="'Calendario'"><ion-calendar #calendar lang="es"></ion-calendar></ion-label>
+    <ion-label *ngSwitchCase="'Perfil'">
+
+    </ion-label>
+
+    <ion-label *ngSwitchCase="'Calendario'">
+      <ion-calendar #calendar lang="es"></ion-calendar>
+    </ion-label>
+
+
     <ion-label *ngSwitchCase="'Medicamentos'">
-      Programar toma de medicamentos 
-      <ion-input type="number" min="1" max="100000"[(ngModel)]="num" placeholder="escribe el tiempo en minutos de tu proxima toma"></ion-input>
-    <button ion-button block (click)="delayednotification()" color="danger">Programar recordatorio</button></ion-label>
+      Programar toma de medicamentos
+      <ion-input type="number" min="1" max="100000" [(ngModel)]="num" placeholder="escribe el tiempo en minutos de tu proxima toma"></ion-input>
+      <button ion-button block (click)="delayednotification()" color="danger">Programar recordatorio</button></ion-label>
+
     </div>
 </ion-content>
