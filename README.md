@@ -1,5 +1,5 @@
 # Mcenter
-Versión 1.6 Beta 
+Versión 1.6 
 
 Incluido:
 1. Registro de usuarios
