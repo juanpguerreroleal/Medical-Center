@@ -1,4 +1,12 @@
-page-login {
-  text-align: center;
+page-login{
+	text-align: center;
 }
-
+.page-login {
+  background: map-get($colors,normal);
+}
+ion-img{
+	background: map-get($colors,normal);
+}
+ion-content{
+	background: map-get($colors,normal);
+}

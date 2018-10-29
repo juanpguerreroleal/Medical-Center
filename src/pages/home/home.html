@@ -22,24 +22,6 @@
   <div [ngSwitch]="Menu">
     <ion-label *ngSwitchCase="'Inicio'" class="Inicio">
       <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <ion-item>
-              <p>Que tal estuvo tu visita a.. ?</p>
-            </ion-item>
-            <ion-item>
-              <ion-range [(ngModel)]="puntuacion">
-                <ion-icon range-left small name="sad"></ion-icon>
-                <ion-icon range-right name="happy"></ion-icon>
-              </ion-range>
-            </ion-item>
-          </ion-col>
-          <ion-col col-6>
-              <ion-card>
-                <img src="../../assets/imgs/mail.png">
-              </ion-card>
-          </ion-col>
-        </ion-row>
         <ion-row col-12>
           <ion-row col-12>
             <ion-label>Siguientes citas:</ion-label>

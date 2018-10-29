@@ -19,15 +19,25 @@
   </div>
   <div [ngSwitch]="Menu">
     <ion-label *ngSwitchCase="'General'" class="General">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
     </ion-label>
     <ion-label *ngSwitchCase="'Perfil'">
-
+      <h2 padding>Mi perfil</h2>
+      <ion-list>
+    <ion-card *ngFor="let item of Perfil | async">
+      <ion-item>
+        <ion-label>Nombre: {{item.nombres}} </ion-label>
+      </ion-item>
+      <ion-item>
+          <ion-label>Apellidos: {{item.apellidop}} {{item.apellidom}} </ion-label>
+        </ion-item>
+        <ion-item>
+        <ion-label> Edad: {{item.edad}} </ion-label>
+      </ion-item>
+      <ion-item>
+      <ion-label> Alergia: {{item.alergia}} </ion-label>
+        </ion-item>
+    </ion-card>
+  </ion-list>
     </ion-label>
 
     <ion-label *ngSwitchCase="'Calendario'">
@@ -36,8 +46,8 @@
 
 
     <ion-label *ngSwitchCase="'Medicamentos'">
-      Programar toma de medicamentos
-      <ion-input type="number" min="1" max="100000" [(ngModel)]="num" placeholder="escribe el tiempo en minutos de tu proxima toma"></ion-input>
+      <strong>Programar toma de medicamentos</strong>
+      <ion-input type="number" min="1" max="100000" [(ngModel)]="num" placeholder="Escribe el tiempo en minutos de tu proxima toma"></ion-input>
       <button ion-button block (click)="delayednotification()" color="danger">Programar recordatorio</button></ion-label>
 
     </div>

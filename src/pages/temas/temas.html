@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="beauty">
+    <ion-title>Temas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+	<form (submit)="onChange($event)" [formGroup]="temasForm">
+		<ion-list radio-group formControlName="temas" no-border>
+	    	<ion-list-header>
+	     		Temas a escoger
+	    	</ion-list-header>
+	    	<ion-item>
+	      		<ion-label>Normal</ion-label>
+	      		<ion-radio value="normal" checked="true"></ion-radio>
+	    	</ion-item>
+	    	<ion-item>
+	      		<ion-label>Nocturno</ion-label>
+	      		<ion-radio value="nocturno"></ion-radio>
+   		 	</ion-item>
+  		</ion-list>
+	</form>
+</ion-content>

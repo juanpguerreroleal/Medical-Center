@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Formulario de citas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>Pacientes</h2>
+  <ion-list>
+    <ion-card *ngFor="let item of paciente | async">
+      <ion-item>
+        <ion-label>Nombre: {{item.nombres}} </ion-label>
+      </ion-item>
+      <ion-item>
+          <ion-label>Apellidos: {{item.apellidop}} {{item.apellidom}} </ion-label>
+        </ion-item>
+        <ion-item>
+        <ion-label> Edad: {{item.edad}} </ion-label>
+      </ion-item>
+      <ion-item>
+      <ion-label> Alergia: {{item.alergia}} </ion-label>
+        </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <button ion-button round color="danger" align="center" (click)="add()">Añadir cita</button>
+</ion-content>

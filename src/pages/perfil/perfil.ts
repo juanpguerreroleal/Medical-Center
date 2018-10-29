@@ -1,9 +1,11 @@
+import { Observable } from 'rxjs';
 import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Component } from "@angular/core";
 import {IonicPage,NavController,NavParams,AlertController} from "ionic-angular";
 import { Perfil } from "../../models/perfil";
 import { TabsPage } from "../tabs/tabs";
+import 'rxjs/add/operator/take';
 
 @IonicPage()
 @Component({

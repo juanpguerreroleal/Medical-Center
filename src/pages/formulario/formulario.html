@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar color="beauty">
+    <ion-title>Formulario de Cita</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime display-format="DD.MM.YYYY HH:mm" [(ngModel)]="tiempo"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Paciente</ion-label>
+      <ion-select [(ngModel)]="pacient" submitText="Entendido" cancelText="Cancelar">
+        <ion-option value="{{item.id}}" *ngFor="let item of paciente | async">{{item.nombres}} {{item.apellidop}} {{item.apellidom}} ({{item.id}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Centro Médico</ion-label>
+      <ion-select [(ngModel)]="clinica" submitText="Entendido" cancelText="Cancelar">
+        <ion-option value="Clinica 6">Clinica 6</ion-option>
+        <ion-option value="Clinica 4">Clinica 4</ion-option>
+        <ion-option value="Clinica 33">Clinica 33</ion-option>
+        <ion-option value="Clinica 52">Clinica 52</ion-option>
+        <ion-option value="Clinica 55">Clinica 55</ion-option>
+        <ion-option value="Hospital Universitario">Hospital Universitario</ion-option>
+        <ion-option value="OCA Hospital">OCA Hospital</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Turno</ion-label>
+      <ion-select [(ngModel)]="turno" interface="action-sheet">
+        <ion-option value="Matutino">Matutino</ion-option>
+        <ion-option value="Verpertino">Verpertino</ion-option>
+        <ion-option value="Nocturno" (ionSelect)="notificationSelect($event)">Nocturno</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Revision</ion-label>
+      <ion-select [(ngModel)]="revision" interface="action-sheet" cancelText="Cancelar">
+        <ion-option value="Diagnóstico">Diagnóstico</ion-option>
+        <ion-option value="Consulta">Consulta</ion-option>
+        <ion-option value="Rutina" (ionSelect)="notificationSelect($event)">Rutina</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Consultorio</ion-label>
+      <ion-input type="number" [(ngModel)]="consultorio"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+
+  <button ion-button round color="danger" align="center" (click)="registrar()">Registrar cita</button>
+
+</ion-content>
