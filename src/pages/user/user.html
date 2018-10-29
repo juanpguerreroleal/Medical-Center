@@ -24,18 +24,30 @@
       <h2 padding>Mi perfil</h2>
       <ion-list>
     <ion-card *ngFor="let item of Perfil | async">
-      <ion-item>
-        <ion-label>Nombre: {{item.nombres}} </ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-label>Apellidos: {{item.apellidop}} {{item.apellidom}} </ion-label>
-        </ion-item>
-        <ion-item>
-        <ion-label> Edad: {{item.edad}} </ion-label>
-      </ion-item>
-      <ion-item>
-      <ion-label> Alergia: {{item.alergia}} </ion-label>
-        </ion-item>
+      <div *ngIf="user(item)">
+        <ng-template [ngIf]="true">
+          <ion-item>
+            <ion-label>Nombre: {{item.nombres}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Apellidos: {{item.apellidop}} {{item.apellidom}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label> Edad: {{item.edad}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label> Alergia: {{item.alergia}} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Proxima cita: {{item.proximaCita}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Detalles: {{item.datosCita}}
+            </ion-label>
+          </ion-item>
+        </ng-template>
+      </div>
     </ion-card>
   </ion-list>
     </ion-label>

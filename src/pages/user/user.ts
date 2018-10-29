@@ -3,7 +3,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { LocalNotifications } from "@ionic-native/local-notifications";
-import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 
 export interface pacientes { 
@@ -12,7 +12,9 @@ export interface pacientes {
   apellidom: string;
   edad: number;
   alergia: string;
-  id?: string;
+  id: string;
+  proximaCita:string;
+  datosCita:string;
   }
 
 @Component({
@@ -21,6 +23,7 @@ export interface pacientes {
 })
 export class UserPage {
   PerfilesCollection: AngularFirestoreCollection<pacientes>;
+  PerfilDoc: AngularFirestoreDocument;
   Perfil:Observable<pacientes[]>;
   Menu: string = "Perfil";
   num: number;
@@ -29,9 +32,8 @@ export class UserPage {
     public localNotifications: LocalNotifications,
     private asf: AngularFirestore) {
     }
-
     ionViewDidLoad(){
-    this.PerfilesCollection = this.asf.collection('pacientes');
+    this.PerfilesCollection = this.asf.collection("pacientes");
     this.Perfil = this.PerfilesCollection.valueChanges();
     }
   delayednotification() {
@@ -42,5 +44,15 @@ export class UserPage {
       sound: null,
       icon: "http://codesolution.co.in/assets/images/code/codeicon.png"
     });
+  }
+  user(item){
+    if (item.id == window.localStorage.getItem('uid')) {
+      console.log(true);
+      return true;
+    }
+    else{
+      return false;
+    }
+
   }
 }

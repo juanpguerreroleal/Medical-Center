@@ -28,7 +28,6 @@ export class HomePage {
       this.DatosdePerfil = this.AfDatabase.object(`perfil/${data.uid}`)
       window.localStorage.setItem("email", data.email);
       window.localStorage.setItem("uid", data.uid);
-      console.log(window.localStorage.getItem("uid"));
   }
   else{
     this.toast.create({
