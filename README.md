@@ -12,5 +12,5 @@ Incluido:
 - [√] _Datos incorrectos_
 
 ## Formulario Médico:
-- [?] _Agregar cita médica_
-- [?] _Desplegar cita en pantalla usuario_
+- [√] _Agregar cita médica_
+- [√] _Desplegar cita en pantalla usuario_
