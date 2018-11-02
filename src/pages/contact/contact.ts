@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { TemasPage } from '../temas/temas';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { NavController, AlertController } from 'ionic-angular';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { NavController, AlertController, NavParams } from 'ionic-angular';
+import firebase from 'firebase';
 
 interface paciente {
   nombres: string;
@@ -17,6 +18,8 @@ interface paciente {
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
+
+
 export class ContactPage {
   todoCollection: AngularFirestoreCollection<paciente>;
   paciente: paciente[];
@@ -25,7 +28,9 @@ export class ContactPage {
   constructor(
     private asf: AngularFirestore,
     public navCtrl: NavController,
-    public alertCtrl: AlertController) {
+    public NavParams: NavParams,
+    public alertCtrl: AlertController,
+) {
     }
 
     crearp() {
@@ -67,12 +72,28 @@ export class ContactPage {
       }]
       }).present();
     }
-    addp(nombres: any, apellidop: any, apellidom: any, edad: any, correo: any, alergia: any): any {
+    addp(nombres: any, apellidop: any, apellidom: any, edad: any, correo: any, alergia: any){
 
+      var user = firebase.auth().currentUser;
+      var uid;
 
-      const id = this.asf.collection('/pacientes').ref.doc().id;
-      this.asf.collection('pacientes').add({id,nombres, apellidop, apellidom, edad, correo, alergia});
+      if (user != null) {
+        uid = user.uid;
+      }
+
+      const id = this.asf.collection('pacientes').doc(uid).set(
+        {
+          id: uid,
+          nombres:nombres,
+          apellidop: apellidop,
+          apellidom: apellidom,
+          edad: edad,
+          correo: correo,
+          alergia: alergia
+        }
+      );
     }
+
 
   show(opcion){
   	switch (opcion) {
@@ -88,6 +109,7 @@ export class ContactPage {
         break;
   	}
   }
+
 }
 
 @Component({
@@ -112,5 +134,8 @@ export class ContactPage {
 </ion-content>
 	`
 })
+
+
 export class DesarrolladoresPage { }
+
 
