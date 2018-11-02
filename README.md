@@ -8,8 +8,10 @@ MCenter fue desarrollado con:
 
 Incluido:
 1. Registro de usuarios
-2. Loggin funcional
+2. Login funcional
 3. Uso de Mapas con uso de Places API
+4. Creación de perfiles de usuario
+5. Asignación de cita (_Médico - Paciente_)
 
 ## Alert de:
 - [√] _Perfil creado_
