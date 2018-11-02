@@ -1,6 +1,3 @@
-
-### Facultad  de Ingeniería Mecánica y Eléctrica
-#####  Equipo HibriDoS
 # Mcenter
 ## Versión 1.7 (Final) 
 
