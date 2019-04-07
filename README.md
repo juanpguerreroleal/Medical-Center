@@ -1,33 +1,26 @@
-# Mcenter
-## Versión 1.7 (Final) 
+# Medical Center
+## Versión 1.0.1 
 
-MCenter fue desarrollado con:
+Medical Center esta siendo desarrollada con las siguientes herramientas:
 
-* Angular - El motor para este proyecto!
-* Ionic - Frame del mismo Angular enfocado a dispostivos móviles.
+* Angular - El motor del proyecto.
+* IONIC - Framework para desarrollo de aplicaciones hibridas.
 
 Incluido:
 1. Registro de usuarios
-2. Login funcional
+2. Login funcional -> En etapa de mejora y optimizacion
 3. Uso de Mapas con uso de Places API
-4. Creación de perfiles de usuario
-5. Asignación de cita (_Médico - Paciente_)
+5. Asignación de cita (_Médico - Paciente_) -> En etapa de mejora y optimizacion 
 
-## Alert de:
-- [√] _Perfil creado_
-- [√] _Datos incorrectos_
+La aplicacion incluye una nueva estructura sobre la que se trabajaran las funcionalidades y una vez finalizada se comenzara la etapa de mejora visual.
 
-## Formulario Médico:
-- [√] _Agregar cita médica_
-- [√] _Desplegar cita en pantalla usuario_
-
-
-
-
+Entre las nuevas funcionalidades encontraremos:
+1. Registro de medicamentos por tomar.
+2. Historial de citas medicas con detalles.
+3. Toma de tiempos de espera y tiempos de consulta.
 
 Desarollado por
 ----
-> * _José Angel Ramírez Cantú_  (FIME/UANL)
 > * _Juan Pablo Guerrero Leal_ (FIME/UANL)
+> * _José Angel Ramírez Cantú_  (FIME/UANL)
 > * _Johan Alejandro Cruz Chávez_ (FIME/UANL)
-> * _Bryan Antonio Perez Avalos_ (FIME/UANL)

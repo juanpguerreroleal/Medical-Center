@@ -5,7 +5,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { RegistroPage } from '../registro/registro';
+import { FormpacientePage } from '../formpaciente/formpaciente';
 import * as firebase from 'firebase/app';
 
 
@@ -22,13 +24,15 @@ export class LoginPage {
     public alertCtrl: AlertController,
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    private asFire: AngularFirestore) {
   }
   async login(user: User) {
     try {
 
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
       if (result) {
+        const exist = this.asFire.doc<any>(`medicos/${result.user.uid}`);
         this.navCtrl.push(TabsPage);
         window.localStorage.setItem("email", this.user.email);
       }

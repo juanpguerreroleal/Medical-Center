@@ -25,3 +25,6 @@ page-user {
     overflow: auto;
   }
 }
+.text{
+  color: map-get($colors,beauty);
+}

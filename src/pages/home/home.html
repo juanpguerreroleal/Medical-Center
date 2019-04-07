@@ -30,10 +30,52 @@
             <ion-calendar col-12 #calendar lang="es"></ion-calendar>
           </ion-row>
         </ion-row>
+        <ion-row>
+          <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
+            <ion-label>Siguientes medicamento:</ion-label>
+          </ion-col>
+          <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
+            <ion-label>Notas de la ultima cita:</ion-label>
+            <ion-card>
+              <img src="../../assets/imgs/medical-59_icon-icons.com_73933.png"/>
+              <ion-card-title>
+                Titulo nota
+              </ion-card-title>
+              <ion-card-content>
+                Informacion nota
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
       </ion-grid>
     </ion-label>
     <ion-label *ngSwitchCase="'Ayuda'">
-      Ayuda
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
+            <ion-card>
+              <img src="../../assets/imgs/aboutUs.jpg"/>
+              <ion-card-title>
+                Informacion
+              </ion-card-title>
+              <ion-card-content>
+                Informacion sobre nosotros
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
+            <ion-card>
+              <img src="../../assets/imgs/projectAbout.jpg"/>
+              <ion-card-title>
+                Proyecto
+              </ion-card-title>
+              <ion-card-content>
+                Informacion del proyecto
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-label>
   </div>
 </ion-content>

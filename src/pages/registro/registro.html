@@ -7,16 +7,70 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label floating>Introduce un correo</ion-label>
+    <ion-label stacked>Introduce un correo</ion-label>
     <ion-input type="email" [(ngModel)]="user.email"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label floating>Introduce una contraseña</ion-label>
-    <ion-input type="email" [(ngModel)]="user.password"></ion-input>
+    <ion-label stacked>Introduce una contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
 
-  <ion-grid padding bottom>
-      <button ion-button (click)="registro(user)" color="registrar">Registrar</button>
+  <ion-item>
+    <ion-label>Datos Personales</ion-label>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-lg-10 col-md-10 col-sm-10>
+        <ion-item>
+          <ion-label>Nombre(s)</ion-label>
+          <ion-input [(ngModel)]="perfil.names"></ion-input>
+          </ion-item>
+      </ion-col>
+      <ion-col col-12 col-lg-2 col-md-2 col-sm-2>
+        <ion-item>
+          <ion-label>Edad</ion-label>
+          <ion-input [(ngModel)]="perfil.age" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
+        <ion-item>
+          <ion-label>Apellido Paterno</ion-label>
+          <ion-input [(ngModel)]="perfil.fatherLastName"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
+        <ion-item>
+          <ion-label>Apellido Materno</ion-label>
+          <ion-input [(ngModel)]="perfil.motherLastName"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
+  <ion-item>
+    <ion-label>Tipo de usuario</ion-label>
+    <ion-select [(ngModel)]="type" multiple="false" cancelText="Cancelar" okText="Aceptar">
+      <ion-option value="1">Medico</ion-option>
+      <ion-option value="2" selected="true">Paciente</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Escribe aquí si tienes alergias (Opcional)</ion-label>
+  </ion-item>
+  <ion-list no-lines>
+    <form [formGroup]="alergyForm">
+      <ion-item *ngFor="let control of alergyForm.controls | keyvalue">
+        <ion-item>
+          <ion-icon name="close-circle" color="naranja" (click)="removeControl(control)" item-end></ion-icon>
+            <ion-input required type="text" [formControlName]="control.key" placeholder="Introduce una alergia"></ion-input>
+        </ion-item>
+      </ion-item>
+    </form>
+    <button ion-button expand="full" color="light" (click)="addControl()">Agregar otra alergia</button>
+  </ion-list>
+  <ion-grid padding bottom>
+      <button expand="full" ion-button (click)="registro(user, perfil, type, alergyForm)" color="registrar">Registrar</button>
+  </ion-grid>
 </ion-content>
+

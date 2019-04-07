@@ -1,11 +1,17 @@
-export interface Perfil {
-  nombres: string;
-  apellidop: string;
-  apellidom: string;
-  edad: symbol;
-  correo: string;
-  alergia: string;
+export  interface Perfil {
+  names: string;
+  fatherLastName: string;
+  motherLastName: string;
+  age: symbol;
+  email: string;
+  alergy: Array<string>
   id: string;
-  proximaCita: string;
-  datosCita: string;
+  //NextMedicalAppointment
+  nextMADate: string;
+  nextMADescription: string;
+  nextMANotes: Array<string>;
+  status: boolean;
+  //MedicalAppoitmentRecords
+  medicalARDates: Array<string>;
+  medicalDescriptions: Array<string>;
 }

@@ -7,14 +7,14 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import { Observable } from 'rxjs';
 
 export interface pacientes { 
-  nombres: string;
-  apellidop: string;
-  apellidom: string;
-  edad: number;
-  alergia: string;
+  name: string;
+  fatherLastName: string;
+  motherLastName: string;
+  age: number;
+  alergy: string;
   id: string;
-  proximaCita:string;
-  datosCita:string;
+  nextMedicalAppointmentDate:string;
+  nextMedicalAppointmentDescription:string;
   }
 
 @Component({
