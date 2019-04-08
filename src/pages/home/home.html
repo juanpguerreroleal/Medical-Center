@@ -24,7 +24,7 @@
       <ion-grid>
         <ion-row col-12>
           <ion-row col-12>
-            <ion-label>Siguientes citas:</ion-label>
+            <ion-label *ngIf="hasANextMADate()">Siguientes citas:</ion-label>
           </ion-row>
           <ion-row col-12>
             <ion-calendar col-12 #calendar lang="es"></ion-calendar>

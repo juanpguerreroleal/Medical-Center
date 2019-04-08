@@ -5,11 +5,11 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 interface pacientes{
-  nombres: string;
-  apellidop: string;
-  apellidom: string;
-  edad: number;
-  alergia: string;
+  names: string;
+  fatherLastName: string;
+  motherLastName: string;
+  age: number;
+  alergy: string;
   id?: string;
 }
 
@@ -31,9 +31,28 @@ export class FormpacientePage {
    this.todoCollection = this.asf.collection('pacientes');
    this.paciente = this.todoCollection.valueChanges();
   }
-
-
-  add(){
+  getItems(e){
+    if(e.target.value == ""){
+      this.todoCollection = this.asf.collection('pacientes');
+    }
+    else{
+      /*this.todoCollection = this.asf.collection('pacientes');
+      this.paciente = this.paciente.forEach((pacients) => {
+        return (pacients.filter( (pacient) => {
+          return (pacient.names.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1)
+        }))
+      });*/
+      this.todoCollection = this.asf.collection('pacientes', ref => ref.where('names', '==', e.target.value));
+    }
+    this.paciente = this.todoCollection.valueChanges();
+  }
+  add(id, name){
+    window.localStorage.setItem("pacientId", id);
+    window.localStorage.setItem("pacientName", name);
     this.navCtrl.push(FormularioPage);
   }
+  /*
+  add(){
+    this.navCtrl.push(FormularioPage);
+  }*/
 }

@@ -22,7 +22,7 @@ export class RegistroPage {
   public type: number;
   private nCount: number = 0;
   perfil = {} as Perfil;
-
+ 
   constructor(private afAuth: AngularFireAuth, private asFire:AngularFirestore, private formBuilder: FormBuilder,
     public navCtrl: NavController, public navParams: NavParams, public alrtCtrl: AlertController, private AfDatabase: AngularFireDatabase) {
       this.alergyForm = formBuilder.group({
@@ -33,10 +33,9 @@ export class RegistroPage {
 
   async registro(user: User, perfil: Perfil, alergyForm: FormGroup ){
   try {
-    this.perfil.alergy = [];
+    this.perfil.alergy = new Array();
     for (var control in alergyForm.controls) {
       this.perfil.alergy.push(alergyForm.get(control.toString()).value);
-      console.log(alergyForm.get(control.toString()).value);
     }
     const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).catch(function(error){
       var errorCode = error.code;
@@ -70,7 +69,13 @@ export class RegistroPage {
           motherLastName: perfil.motherLastName,
           age: perfil.age,
           email: perfil.email,
-          alergy: perfil.alergy
+          alergy: perfil.alergy,
+          nextMADate: "",
+          nextMADescription: "",
+          nextMANotes: "",
+          MAstatus: false,
+          medicalARDates: new Array(),
+          medicalDescriptions: new Array()
         }
       );
       const log = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);

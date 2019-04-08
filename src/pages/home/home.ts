@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Perfil } from '../../models/perfil';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import {AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import {Observable} from 'rxjs';
 @IonicPage()
 @Component({
@@ -11,9 +12,14 @@ import {Observable} from 'rxjs';
 })
 export class HomePage {
   Menu: string = "Inicio";
+  uid: string;
 
-  DatosdePerfil: AngularFireObject<Perfil>
-  constructor(private afAuth: AngularFireAuth,private AfDatabase: AngularFireDatabase, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {}
+  DatosdePerfil: AngularFireObject<Perfil>;
+    userDoc: AngularFirestoreDocument;
+  constructor(private afAuth: AngularFireAuth,private AfDatabase: AngularFireDatabase, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams, private asf: AngularFirestore) {
+    this.uid = window.localStorage.getItem("uid");
+    this.userDoc = this.asf.doc<any>(`pacientes/${this.uid}`);
+  }
   getName(){
   	return window.localStorage.getItem("email");
   }
@@ -27,7 +33,6 @@ export class HomePage {
       }).present();
       this.DatosdePerfil = this.AfDatabase.object(`perfil/${data.uid}`)
       window.localStorage.setItem("email", data.email);
-      window.localStorage.setItem("uid", data.uid);
   }
   else{
     this.toast.create({
@@ -36,5 +41,8 @@ export class HomePage {
   }).present();
   }
     })
+  }
+  hasANextMADate(){
+    return true;
   }
 }

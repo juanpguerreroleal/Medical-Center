@@ -18,7 +18,7 @@ import * as firebase from 'firebase/app';
 })
 export class LoginPage {
 
- user = {} as User;
+  user = {} as User;
 
   constructor(
     public alertCtrl: AlertController,
@@ -32,9 +32,30 @@ export class LoginPage {
 
       const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
       if (result) {
-        const exist = this.asFire.doc<any>(`medicos/${result.user.uid}`);
-        this.navCtrl.push(TabsPage);
-        window.localStorage.setItem("email", this.user.email);
+        let pacientExist = this.asFire.doc<any>(`pacientes/${result.user.uid}`).ref.get().then((docSnap)=>{
+          if(docSnap.exists){
+            this.navCtrl.push(TabsPage);
+            window.localStorage.setItem("email", this.user.email);
+            window.localStorage.setItem("uid", result.user.uid);
+          }
+          else{
+            this.asFire.doc<any>(`medicos/${result.user.uid}`).ref.get().then((docSnap2)=>{
+              if(docSnap2.exists){
+                this.navCtrl.setRoot(FormpacientePage);
+                window.localStorage.setItem("email", this.user.email);
+                window.localStorage.setItem("uid", result.user.uid);
+              }
+              else{
+                const alert = this.alertCtrl.create({
+                  title: 'Fallo al iniciar sesión!',
+                  subTitle: 'Introduciste mal tu correo o contraseña',
+                  buttons: ['Entendido']
+                });
+                alert.present();
+              }
+            });
+          }
+        });
       }
       else{
         const alert = this.alertCtrl.create({
@@ -57,12 +78,12 @@ export class LoginPage {
 
   }
   ionViewPageLoad(){
-     firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-       this.self.navCtrl.setRoot(TabsPage);
+        this.self.navCtrl.setRoot(TabsPage);
       } else {
         this.navCtrl.setRoot(LoginPage);       }
-    });
+      });
   }
 
   registro(){
@@ -70,6 +91,6 @@ export class LoginPage {
   }
 
   logind() {
-  this.navCtrl.push(DoctorsPage);
+    this.navCtrl.push(DoctorsPage);
   }
 }

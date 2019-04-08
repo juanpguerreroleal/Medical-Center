@@ -13,8 +13,8 @@ export interface pacientes {
   age: number;
   alergy: string;
   id: string;
-  nextMedicalAppointmentDate:string;
-  nextMedicalAppointmentDescription:string;
+  nextMADate:string;
+  nextMADescription:string;
   }
 
 @Component({
@@ -22,6 +22,8 @@ export interface pacientes {
   templateUrl: "user.html"
 })
 export class UserPage {
+  userDoc: AngularFirestoreDocument;
+  uid: string;
   PerfilesCollection: AngularFirestoreCollection<pacientes>;
   PerfilDoc: AngularFirestoreDocument;
   Perfil:Observable<pacientes[]>;
@@ -31,6 +33,8 @@ export class UserPage {
     public navCtrl: NavController,
     public localNotifications: LocalNotifications,
     private asf: AngularFirestore) {
+    this.uid = window.localStorage.getItem("uid");
+    this.userDoc = asf.doc<any>(`pacientes/${this.uid}`);
     }
     ionViewDidLoad(){
     this.PerfilesCollection = this.asf.collection("pacientes");

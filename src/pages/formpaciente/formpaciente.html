@@ -1,30 +1,52 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Formulario de citas</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar color="dark">
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-segment>
+      <ion-segment-button value="totalList" color="dark">
+        Total
+      </ion-segment-button>
+      <ion-segment-button value="myPatients" color="dark">
+        Mis pacientes
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
-
-
 <ion-content padding>
-  <h2>Pacientes</h2>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list-header>Pacientes</ion-list-header>
   <ion-list>
-    <ion-card *ngFor="let item of paciente | async">
+    <ion-item-sliding *ngFor="let item of paciente | async">
       <ion-item>
-        <ion-label>Nombre: {{item.nombres}} </ion-label>
+        <ion-avatar item-start>
+          <img src="../../assets/imgs/icon.png">
+        </ion-avatar>
+        <h2>{{item.names}} {{item.fatherLastName}} {{item.motherLastName}}</h2>
+        <h3>Edad: {{item.age}}</h3>
+        <p>Alergias: {{item.alergy}} </p>
       </ion-item>
-      <ion-item>
-          <ion-label>Apellidos: {{item.apellidop}} {{item.apellidom}} </ion-label>
-        </ion-item>
-        <ion-item>
-        <ion-label> Edad: {{item.edad}} </ion-label>
-      </ion-item>
-      <ion-item>
-      <ion-label> Alergia: {{item.alergia}} </ion-label>
-        </ion-item>
-    </ion-card>
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="add(item.id, item.names+' '+item.fatherLastName)">
+          <ion-icon name="add"></ion-icon>
+          Nueva cita
+        </button>
+        <button ion-button color="doctores">
+          <ion-icon name="edit"></ion-icon>
+          Editar cita
+        </button>
+        <button ion-button color="dark">
+          <ion-icon name="folder-open"></ion-icon>
+          Historial
+        </button>
+        <button ion-button color="light">
+          <ion-icon name="person"></ion-icon>
+          Informacion
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
-
   <button ion-button round color="danger" align="center" (click)="add()">Añadir cita</button>
 </ion-content>

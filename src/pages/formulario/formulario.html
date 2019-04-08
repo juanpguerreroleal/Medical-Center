@@ -1,23 +1,14 @@
 <ion-header>
-
-  <ion-navbar color="beauty">
+  <ion-navbar color="dark">
     <ion-title>Formulario de Cita</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
+  <h2>Cita medica para {{pacientName}}</h2>
   <ion-list>
     <ion-item>
       <ion-label>Fecha</ion-label>
       <ion-datetime display-format="DD.MM.YYYY HH:mm" [(ngModel)]="tiempo"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label>Paciente</ion-label>
-      <ion-select [(ngModel)]="pacient" submitText="Entendido" cancelText="Cancelar">
-        <ion-option value="{{item.id}}" *ngFor="let item of paciente | async">{{item.nombres}} {{item.apellidop}} {{item.apellidom}} ({{item.id}}</ion-option>
-      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Centro Médico</ion-label>
