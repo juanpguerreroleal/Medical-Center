@@ -21,6 +21,9 @@ interface pacientes{
 export class FormpacientePage {
   todoCollection: AngularFirestoreCollection<pacientes>;
   paciente: Observable<pacientes[]>;
+  tiempoIni: string;
+
+  
 
   constructor(
     public navCtrl: NavController,
@@ -30,6 +33,7 @@ export class FormpacientePage {
   ionViewDidLoad(){
    this.todoCollection = this.asf.collection('pacientes');
    this.paciente = this.todoCollection.valueChanges();
+   
   }
   getItems(e){
     if(e.target.value == ""){
@@ -49,7 +53,9 @@ export class FormpacientePage {
   add(id, name){
     window.localStorage.setItem("pacientId", id);
     window.localStorage.setItem("pacientName", name);
-    this.navCtrl.push(FormularioPage);
+    let tiempoIni = new Date().getTime()
+    this.navCtrl.push(FormularioPage, {tiempoInicial: tiempoIni});
+  
   }
   /*
   add(){

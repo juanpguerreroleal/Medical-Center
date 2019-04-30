@@ -21,6 +21,9 @@ export class FormularioPage {
   tiempo: string;
   userDoc: AngularFirestoreDocument;
   registroDoc: AngularFirestoreDocument;
+  tiempoI:String;
+  tiempoF:String;
+  tiempoC:String;
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController,
@@ -29,12 +32,16 @@ export class FormularioPage {
     this.pacient = window.localStorage.getItem("pacientId");
     this.userDoc = this.asf.doc<any>(`pacientes/${this.pacient}`);
     this.pacientName = window.localStorage.getItem("pacientName");
+    this.tiempoI = navParams.get('tiempoInicial');
   }
 
   registrar(){
+    let tiempoF = new Date().getTime()
+    //console.log("Tiempo inicial capturado: " + this.tiempoI); <-- Initial time
+    //console.log("Tiempo final capturado: " + tiempoF); <-- Current *final time
     try{
       if(this.clinica != undefined && this.turno != undefined && this.revision != undefined && this.consultorio != undefined){
-        const datos = 'Clinica: '+this.clinica+' Turno: '+this.turno+' Revision: '+this.revision+' Consultorio: '+this.consultorio;
+        const datos = 'Clinica: '+this.clinica+' Turno: '+this.turno+' Revision: '+this.revision+' Consultorio: '+this.consultorio + ' Tiempo de consulta: ' + this.diff(tiempoF, this.tiempoI) + ' minuto(s) ';
         this.perfil.medicalARDates = new Array();
         this.perfil.medicalDescriptions = new Array();
         this.userDoc.update({
@@ -96,5 +103,10 @@ export class FormularioPage {
       });
       alert.present();
     }
+  }
+
+  diff(tiempoF, tiempoI){
+    console.log(Math.floor((tiempoF - tiempoI)/ 60000));
+    return Math.floor((tiempoF - tiempoI)/ 60000)
   }
 }
