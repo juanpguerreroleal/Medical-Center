@@ -19,6 +19,7 @@ export class FormularioPage {
   revision: string;
   consultorio: any;
   tiempo: string;
+  note: string;
   userDoc: AngularFirestoreDocument;
   registroDoc: AngularFirestoreDocument;
   tiempoI:String;
@@ -37,8 +38,6 @@ export class FormularioPage {
 
   registrar(){
     let tiempoF = new Date().getTime()
-    //console.log("Tiempo inicial capturado: " + this.tiempoI); <-- Initial time
-    //console.log("Tiempo final capturado: " + tiempoF); <-- Current *final time
     try{
       if(this.clinica != undefined && this.turno != undefined && this.revision != undefined && this.consultorio != undefined){
         const datos = 'Clinica: '+this.clinica+' Turno: '+this.turno+' Revision: '+this.revision+' Consultorio: '+this.consultorio + ' Tiempo de consulta: ' + this.diff(tiempoF, this.tiempoI) + ' minuto(s) ';
@@ -71,6 +70,20 @@ export class FormularioPage {
               const existingArray = doc.data().medicalARDescriptions;
               existingArray.push(datos);
               t.set(this.userDoc.ref, { medicalARDescriptions: existingArray }, { merge: true });
+            }
+          });
+        }).then(function () {
+          console.log("Transaction successfully committed!");
+        }).catch(function (error) {
+          console.log("Transaction failed: ", error);
+        });
+        this.asf.firestore.runTransaction((t) => {
+          return t.get(this.userDoc.ref).then((doc) => {
+            if (!doc.data().note) {
+              t.set(this.userDoc.ref, { 'note': this.note }, { merge: true });
+            } else {
+              const existingData = doc.data().note;
+              t.set(this.userDoc.ref, { medicalARDescriptions: existingData }, { merge: true });
             }
           });
         }).then(function () {

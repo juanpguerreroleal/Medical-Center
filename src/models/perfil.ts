@@ -14,4 +14,5 @@ export  interface Perfil {
   //MedicalAppoitmentRecords
   medicalARDates: Array<string>;
   medicalDescriptions: Array<string>;
+  note: string;
 }

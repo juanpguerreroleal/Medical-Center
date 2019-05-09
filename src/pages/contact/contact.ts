@@ -128,7 +128,7 @@ export class ContactPage {
     </ion-list-header>
     <ion-item>
       <ion-icon name="logo-github" item-start></ion-icon>
-      https://github.com/arcantu97/Mcenter
+      https://github.com/juanpguerreroleal/Medical-Center
     </ion-item>
   </ion-list>
 </ion-content>

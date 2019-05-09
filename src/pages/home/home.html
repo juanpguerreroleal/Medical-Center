@@ -39,10 +39,10 @@
             <ion-card>
               <img src="../../assets/imgs/medical-59_icon-icons.com_73933.png"/>
               <ion-card-title>
-                Titulo nota
+                Nota
               </ion-card-title>
               <ion-card-content>
-                Informacion nota
+                <p>{{ (userItem | async)?.note }}</p>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -56,10 +56,10 @@
             <ion-card>
               <img src="../../assets/imgs/aboutUs.jpg"/>
               <ion-card-title>
-                Informacion
+                Desarrolladores
               </ion-card-title>
               <ion-card-content>
-                Informacion sobre nosotros
+                <p></p>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -71,6 +71,7 @@
               </ion-card-title>
               <ion-card-content>
                 Informacion del proyecto
+                <p>Repositorio: https://github.com/juanpguerreroleal/Medical-Center</p>
               </ion-card-content>
             </ion-card>
           </ion-col>
