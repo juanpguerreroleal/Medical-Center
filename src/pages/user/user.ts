@@ -5,6 +5,8 @@ import { NavController } from "ionic-angular";
 import { LocalNotifications } from "@ionic-native/local-notifications";
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { Perfil } from '../../models/perfil';
+import { map } from 'rxjs/operators';
 
 export interface pacientes { 
   name: string;
@@ -15,6 +17,8 @@ export interface pacientes {
   id: string;
   nextMADate:string;
   nextMADescription:string;
+  medicalARDates: Array<string>;
+  medicalARDescriptions: Array<string>;
   }
 
 @Component({
@@ -27,14 +31,21 @@ export class UserPage {
   PerfilesCollection: AngularFirestoreCollection<pacientes>;
   PerfilDoc: AngularFirestoreDocument;
   Perfil:Observable<pacientes[]>;
+  userOb: Observable<Perfil>;
+
   Menu: string = "Perfil";
   num: number;
+  descriptions: Array<string>;
   constructor(
     public navCtrl: NavController,
     public localNotifications: LocalNotifications,
     private asf: AngularFirestore) {
     this.uid = window.localStorage.getItem("uid");
     this.userDoc = asf.doc<any>(`pacientes/${this.uid}`);
+    this.getDocData().subscribe( res => {
+      this.descriptions = res.medicalARDescriptions;
+      console.log(this.descriptions);
+    });
     }
     ionViewDidLoad(){
     this.PerfilesCollection = this.asf.collection("pacientes");
@@ -48,10 +59,19 @@ export class UserPage {
       sound: null,
       icon: "http://codesolution.co.in/assets/images/code/codeicon.png"
     });
+
+  }
+  getDocData(){
+    this.userOb = this.userDoc.snapshotChanges().pipe(
+      map( actions => {
+      const data = actions.payload.data() as Perfil;
+      const id = actions.payload.id;
+      return { id, ...data};
+    }));
+    return this.userOb;
   }
   user(item){
     if (item.id == window.localStorage.getItem('uid')) {
-      console.log(true);
       return true;
     }
     else{

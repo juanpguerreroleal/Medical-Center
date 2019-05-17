@@ -13,6 +13,8 @@ export  interface Perfil {
   status: boolean;
   //MedicalAppoitmentRecords
   medicalARDates: Array<string>;
-  medicalDescriptions: Array<string>;
+  medicalARDescriptions: Array<string>;
   note: string;
+  //OnlyMedic
+  averageTime: number;
 }

@@ -31,12 +31,12 @@
                 <ion-row>
                   <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
                     <ion-item>
-                      <ion-label>Nombre: <ion-label class="text">{{item.names}} </ion-label></ion-label>
+                      <ion-label text-wrap>Nombre: <ion-label class="text">{{item.names}} </ion-label></ion-label>
                     </ion-item>
                   </ion-col>
                   <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
                     <ion-item>
-                      <ion-label>Apellidos: <ion-label class="text">{{item.fatherLastName}} {{item.motherLastName}} </ion-label></ion-label>
+                      <ion-label text-wrap>Apellidos: <ion-label class="text">{{item.fatherLastName}} {{item.motherLastName}} </ion-label></ion-label>
                     </ion-item> 
                   </ion-col>
                 </ion-row>
@@ -61,7 +61,7 @@
                   <ion-col col-12 col-lg-6 col-md-6 col-sm-6>
                     <ion-item>
                       <ion-label>
-                        Detalles: <ion-label class="text">{{item.nextMADescription}}</ion-label>
+                        Detalles: <ion-label class="text" text-wrap>{{item.nextMADescription}}</ion-label>
                       </ion-label>
                     </ion-item>
                   </ion-col>
@@ -82,9 +82,13 @@
           </ion-col>
           <ion-col col-12 col-lg-4 col-md-4 col-sm-4>
             <ion-label>Listado de historial de citas</ion-label>
-            <ion-list inset>
-              <button ion-item>Cita - Descripcion</button>
-            </ion-list>
+            <div *ngFor="let item of descriptions">
+                <ng-template [ngIf]="true">
+                  <ion-list inset text-wrap>
+                    <button ion-item>{{item}}</button>
+                  </ion-list>
+                </ng-template>
+            </div>
           </ion-col>
           <ion-col col-12 col-lg-4 col-md-4 col-sm-4>
 

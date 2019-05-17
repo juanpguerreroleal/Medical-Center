@@ -20,7 +20,7 @@
   <ion-list-header>Pacientes</ion-list-header>
   <ion-list>
     <ion-item-sliding *ngFor="let item of paciente | async">
-      <ion-item>
+      <ion-item text-wrap>
         <ion-avatar item-start>
           <img src="../../assets/imgs/icon.png">
         </ion-avatar>
@@ -48,5 +48,4 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <button ion-button round color="danger" align="center" (click)="add()">Añadir cita</button>
 </ion-content>

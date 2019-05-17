@@ -4,6 +4,7 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument }
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Perfil } from '../../models/perfil';
+import { map } from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -13,36 +14,65 @@ import { Perfil } from '../../models/perfil';
 export class FormularioPage {
   perfil = {} as Perfil;
   pacient: string;
+  medic: string;
   pacientName: string;
   clinica: string;
+  cont: number = 0;
   turno: string;
   revision: string;
   consultorio: any;
   tiempo: string;
+  time: number;
   note: string;
   userDoc: AngularFirestoreDocument;
+  medicDoc: AngularFirestoreDocument;
   registroDoc: AngularFirestoreDocument;
   tiempoI:String;
   tiempoF:String;
   tiempoC:String;
+  userOb: Observable<Perfil>;
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams,
     private asf: AngularFirestore) {
     this.pacient = window.localStorage.getItem("pacientId");
+    this.medic = window.localStorage.getItem("uid");
     this.userDoc = this.asf.doc<any>(`pacientes/${this.pacient}`);
+    this.medicDoc = this.asf.doc<any>(`medicos/${this.medic}`);
     this.pacientName = window.localStorage.getItem("pacientName");
     this.tiempoI = navParams.get('tiempoInicial');
+    this.getDocData().subscribe( res => {
+      this.time = res.averageTime;
+      if(this.time > this.diff(new Date().getTime(), this.tiempoI) && this.cont < 1){
+        this.showAlert();
+        this.cont++;
+      }
+    });
   }
-
+  async showAlert(){
+    let alert =  await this.alertCtrl.create({
+      message: "Estas excediendo el tiempo de consulta",
+      buttons: ['Cancel','OK']
+    });
+    await alert.present();
+  }
+  getDocData(){
+    this.userOb = this.userDoc.snapshotChanges().pipe(
+      map( actions => {
+      const data = actions.payload.data() as Perfil;
+      const id = actions.payload.id;
+      return { id, ...data};
+    }));
+    return this.userOb;
+  }
   registrar(){
     let tiempoF = new Date().getTime()
     try{
       if(this.clinica != undefined && this.turno != undefined && this.revision != undefined && this.consultorio != undefined){
         const datos = 'Clinica: '+this.clinica+' Turno: '+this.turno+' Revision: '+this.revision+' Consultorio: '+this.consultorio + ' Tiempo de consulta: ' + this.diff(tiempoF, this.tiempoI) + ' minuto(s) ';
         this.perfil.medicalARDates = new Array();
-        this.perfil.medicalDescriptions = new Array();
+        this.perfil.medicalARDescriptions = new Array();
         this.userDoc.update({
           nextMADate: this.tiempo,
           nextMADescription: datos
@@ -65,7 +95,8 @@ export class FormularioPage {
         this.asf.firestore.runTransaction((t) => {
           return t.get(this.userDoc.ref).then((doc) => {
             if (!doc.data().medicalARDescriptions) {
-              t.set(this.userDoc.ref, { 'medicalARDescriptions': [this.perfil.medicalDescriptions] }, { merge: true });
+              this.perfil.medicalARDescriptions.push(datos);
+              t.set(this.userDoc.ref, { 'medicalARDescriptions': [this.perfil.medicalARDescriptions] }, { merge: true });
             } else {
               const existingArray = doc.data().medicalARDescriptions;
               existingArray.push(datos);
@@ -83,7 +114,21 @@ export class FormularioPage {
               t.set(this.userDoc.ref, { 'note': this.note }, { merge: true });
             } else {
               const existingData = doc.data().note;
-              t.set(this.userDoc.ref, { medicalARDescriptions: existingData }, { merge: true });
+              t.set(this.userDoc.ref, { note: existingData }, { merge: true });
+            }
+          });
+        }).then(function () {
+          console.log("Transaction successfully committed!");
+        }).catch(function (error) {
+          console.log("Transaction failed: ", error);
+        });
+        this.asf.firestore.runTransaction((t) => {
+          return t.get(this.medicDoc.ref).then((doc) => {
+            if (!doc.data().averageTime) {
+              t.set(this.medicDoc.ref, { 'averageTime': this.diff(tiempoF, this.tiempoI) }, { merge: true });
+            } else {
+              const existingArray = (doc.data().averageTime + this.diff(tiempoF, this.tiempoI))/2;
+              t.set(this.medicDoc.ref, { averageTime: existingArray }, { merge: true });
             }
           });
         }).then(function () {
