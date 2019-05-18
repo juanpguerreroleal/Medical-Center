@@ -4,6 +4,16 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+  <ion-item>
+    <ion-icon name="clock" item-start></ion-icon>
+    Tiempo promedio
+    <ion-badge item-end>{{time}} minutos</ion-badge>
+  </ion-item>
+    <ion-item>
+    <ion-icon name="clock" item-start></ion-icon>
+    Tiempo actual
+    <ion-badge item-end>{{timeValue}} minutos</ion-badge>
+  </ion-item>
   <h2>Cita medica para {{pacientName}}</h2>
   <ion-list>
     <ion-item>
